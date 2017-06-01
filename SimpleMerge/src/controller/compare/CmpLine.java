@@ -13,6 +13,6 @@ public interface CmpLine {
 	/*each line in ArrayList is moved to match the position of lines
 	 * and have tag option that used to highlight text color*/
 	//please check the Editable option value
-	//return ArrayList<Line> compared_contents
-	public ArrayList<Line> matchEqualLine(ArrayList<Line> notCompared_left, ArrayList<Line> notCompared_right);
+	//return two of ArrayList<Line> compared_contents
+	public void matchEqualLine(ArrayList<Line> notCompared_left, ArrayList<Line> notCompared_right);
 }

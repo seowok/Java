@@ -6,8 +6,8 @@ import javax.swing.JTextPane;
 
 public class CompareLine implements CmpLine{
 
-	private ArrayList<Line> compared_left = new ArrayList<Line>();
-	private ArrayList<Line> compared_right = new ArrayList<Line>();
+	ArrayList<Line> compared_left = new ArrayList<Line>();
+	ArrayList<Line> compared_right = new ArrayList<Line>();
 	
 	@Override
 	public ArrayList<Line> constructLine(JTextPane text_pane) {
@@ -75,14 +75,6 @@ public class CompareLine implements CmpLine{
 			}
 		}
 		
-	}
-	
-	public ArrayList<Line> getComparedLeft(){
-		return compared_left;
-	}
-	
-	public ArrayList<Line> getComparedRight(){
-		return compared_right;
 	}
 
 }

@@ -76,13 +76,5 @@ public class CompareLine implements CmpLine{
 		}
 		
 	}
-	
-	public ArrayList<Line> getComparedLeft(){
-		return compared_left;
-	}
-	
-	public ArrayList<Line> getComparedRight(){
-		return compared_right;
-	}
 
 }
