@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.JTextPane;
 
+import controller.compare.ComparedLine.Tag;
+
 public class CompareLine implements CmpLine{
 
 	private ArrayList<Line> compared_left = new ArrayList<Line>();
@@ -59,22 +61,44 @@ public class CompareLine implements CmpLine{
 		}
 		
 		//Match line positions of left contents and right contents
+		ComparedLine compared_left_line;
+		ComparedLine compared_right_line;
+		
+		ComparedLine blank_line = new ComparedLine("\n");
+		blank_line.tag = Tag.space;
+		
 		int matching_line_count = 0;
+		
 		for(int j = 1; j < left_size; j++){
-			ComparedLine compared_left_line = new ComparedLine(notCompared_left.get(j-1).line);
-			compared_left.add(compared_left_line);
+			compared_left_line = new ComparedLine(notCompared_left.get(j-1).line);
+			compared_left_line.tag = Tag.notequal;
 			for(int i = 1; i < right_size; i++){
-				ComparedLine compared_right_line = new ComparedLine(notCompared_right.get(i-1).line);
-				compared_left.add(compared_right_line);
-				if(table[i][j] == matching_line_count + 1){
+				compared_right_line = new ComparedLine(notCompared_right.get(i-1).line);
+				if(table[i][j] == matching_line_count){
+					compared_right_line.tag = Tag.notequal;
+				}
+				else{
 					matching_line_count++;
-					if(i == j){
-						
+					compared_right_line.tag = Tag.equal;
+					compared_left_line.tag = Tag.equal;
+					
+					if(i > j){
+						for(int count = 0; count < i - j; count++)
+						compared_left.add(blank_line);
+					}
+					else if(i < j){
+						for(int count = 0; count < i - j; count++){
+						compared_right.add(blank_line);
+						}
+					}
+					else{
+						//null;
 					}
 				}
+				compared_right.add(compared_right_line);
 			}
-		}
-		
+			compared_left.add(compared_left_line);
+		}		
 	}
 	
 	public ArrayList<Line> getComparedLeft(){
