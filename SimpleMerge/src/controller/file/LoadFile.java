@@ -7,7 +7,7 @@ import javax.swing.JTextArea;
 
 public interface LoadFile {
 	
-	public BufferedReader setFileReadStream(String file_path, FileReader file_reader);
+	public BufferedReader setFileReadStream(String file_path);
 	
 	//load text data from file
 	//write text buffers to text area
