@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 
 public class MenuFile extends JMenu{
 	private FileMenuHandler filemenuhandler;
-	
 	public MenuFile(String label){
 		super(label);
 		filemenuhandler = new FileMenuHandler();
