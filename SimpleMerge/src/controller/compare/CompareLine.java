@@ -68,6 +68,8 @@ public class CompareLine implements CmpLine{
 		blank_line.tag = Tag.space;
 		
 		int matching_line_count = 0;
+<<<<<<< HEAD
+=======
 		int matching_left_index = 1;
 		int matching_right_index = 1;
 		
@@ -124,13 +126,18 @@ public class CompareLine implements CmpLine{
 		
 		
 		
+>>>>>>> e45d3bbc1a3274c6fb6ade56f3e6a5e22427220a
 		
 		for(int j = 1; j < left_size; j++){
 			compared_left_line = new ComparedLine(notCompared_left.get(j-1).line);
 			compared_left_line.tag = Tag.notequal;
 			for(int i = 1; i < right_size; i++){
 				compared_right_line = new ComparedLine(notCompared_right.get(i-1).line);
+<<<<<<< HEAD
+				if(table[i][j] == matching_line_count){
+=======
 				if(table[i][j] <= matching_line_count){
+>>>>>>> e45d3bbc1a3274c6fb6ade56f3e6a5e22427220a
 					compared_right_line.tag = Tag.notequal;
 				}
 				else{
