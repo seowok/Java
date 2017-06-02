@@ -1,0 +1,34 @@
+package controller.compare.test;
+
+import static org.junit.Assert.*;
+
+import java.awt.List;
+import java.util.ArrayList;
+
+import javax.swing.JTextPane;
+
+import org.junit.Test;
+
+import controller.compare.CompareLine;
+import controller.compare.Line;
+
+public class LCSTableTest {
+
+	@Test
+	public void testMatchEqualLine() {
+		CompareLine compareLine = new CompareLine();
+		JTextPane jTextPane = new JTextPane();
+		
+		ArrayList<Line> left = compareLine.constructLine(jTextPane);
+		ArrayList<Line> right = compareLine.constructLine(jTextPane);
+		compareLine.matchEqualLine(left, right);
+		assertArrayEquals(left, right);
+		
+	}
+
+	private void assertArrayEquals(ArrayList<Line> left, ArrayList<Line> right) {
+		// TODO Auto-generated method stub
+		if(left.equals(right)) assertEquals(expected, actual);
+	}
+
+}

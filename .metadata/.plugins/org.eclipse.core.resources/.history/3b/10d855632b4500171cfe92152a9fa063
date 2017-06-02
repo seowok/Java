@@ -1,0 +1,12 @@
+package controller.file;
+
+import java.io.BufferedReader;
+
+public interface SaveFile {
+	
+	//read text buffers from JtextArea
+	//return BufferedReader contained text data
+	public BufferedReader readTextArea();
+	
+	public boolean saveFile(String file_path, BufferedReader text_contents);
+}

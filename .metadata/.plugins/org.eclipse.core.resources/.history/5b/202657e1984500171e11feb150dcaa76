@@ -1,0 +1,6 @@
+package controller.file;
+
+public interface SetReadOnly {
+
+	public void setReadOnlyMode()
+}

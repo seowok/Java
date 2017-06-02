@@ -1,0 +1,11 @@
+package controller.compare;
+
+public class Line {
+
+	enum Tag{
+		space, equal, notequal
+	}
+	
+	Tag tag;
+	String line;
+}

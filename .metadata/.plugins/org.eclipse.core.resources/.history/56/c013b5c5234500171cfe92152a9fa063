@@ -1,0 +1,5 @@
+package compare.copy;
+
+public interface CmpParagraph {
+
+}

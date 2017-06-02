@@ -1,0 +1,35 @@
+package controller.compare;
+
+import java.util.ArrayList;
+
+import javax.swing.JTextArea;
+
+public class CompareParagraph implements CmpParagraph{
+
+	@Override
+	public ArrayList<Paragraph> constructPG(JTextArea contents) {
+		// TODO Auto-generated method stub
+		
+		ArrayList<Paragraph> contents_par = new ArrayList<>();
+		Paragraph par = new Paragraph();
+		
+		String[] contents_str = contents.getText().split("\\n");
+		
+		for(String str : contents_str){
+			if(str.isEmpty()){
+				
+			}
+			else{
+				Line str_line = new Line(str);
+		}
+		return null;
+		
+	}
+
+	@Override
+	public void matchSimilarPG(ArrayList<Paragraph> Left_contents, ArrayList<Paragraph> Right_contents) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
