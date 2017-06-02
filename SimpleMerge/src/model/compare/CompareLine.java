@@ -29,28 +29,28 @@ public class CompareLine implements CmpLine{
 	@Override
 	public void matchEqualLine(ArrayList<Line> notCompared_left, ArrayList<Line> notCompared_right) {
 		// TODO Auto-generated method stub
-		int left_size = notCompared_left.size() + 1;
-		int right_size = notCompared_right.size() + 1;
+		int left_size = notCompared_left.size();
+		int right_size = notCompared_right.size();
 		
 		int LCS_count = 0;
 		int max_matching_count;
-		int[][] table = new int[right_size][left_size];
+		int[][] table = new int[right_size+1][left_size+1];
 		
-		for(int i = 0; i < left_size; i++){
+		for(int i = 0; i < left_size + 1; i++){
 			table[0][i] = 0;
 		}
 		
 		//Calculation Table Index and LCS Count
-		for(int i = 1; i < right_size; i++){
+		for(int i = 1; i < right_size + 1; i++){
 			max_matching_count = 0;
 			table[i][0] = 0;
-			for(int j = 1; j < left_size; j++){
-				if(notCompared_left.get(i).equals(notCompared_right.get(j))){
+			for(int j = 1; j < left_size + 1; j++){
+				if(notCompared_right.get(i-1).line.equals(notCompared_left.get(j-1).line)){
 					max_matching_count = table[i-1][j-1] + 1;
 					table[i][j] = max_matching_count;
 				}
 				else{
-					if(table[i][j-1] > table[i][j])
+					if(table[i][j-1] > table[i-1][j])
 						table[i][j] = table[i][j-1];
 					else
 						table[i][j] = table[i-1][j];
@@ -75,6 +75,8 @@ public class CompareLine implements CmpLine{
 		
 		for(int j = matching_left_index; j < left_size; j ++){
 			for(int i = matching_right_index; i < right_size; i ++){
+				System.out.println("( " + i + ", " + j + " )");
+				System.out.println(table[i][j] + " : " + (matching_line_count + 1));
 				if(table[i][j] == matching_line_count + 1){
 					left_count = j - matching_left_index;
 					right_count = i - matching_right_index;
@@ -104,17 +106,17 @@ public class CompareLine implements CmpLine{
 							compared_left.add(blank_line);
 						}
 					}
-					compared_left_line = new ComparedLine(notCompared_left.get(j).line);
+					compared_left_line = new ComparedLine(notCompared_left.get(j-1).line);
 					compared_left_line.tag = Tag.equal;
 					compared_left.add(compared_left_line);
 					
-					compared_right_line = new ComparedLine(notCompared_right.get(i).line);
+					compared_right_line = new ComparedLine(notCompared_right.get(i-1).line);
 					compared_right_line.tag = Tag.equal;
 					compared_right.add(compared_right_line);	
 					
 					matching_line_count++;
 					matching_left_index = j;
-					matching_right_index = i;
+					matching_right_index = i+1;
 					
 					break;
 				}
@@ -123,9 +125,7 @@ public class CompareLine implements CmpLine{
 		}
 		
 		
-		
-		
-		for(int j = 1; j < left_size; j++){
+		/*for(int j = 1; j < left_size; j++){
 			compared_left_line = new ComparedLine(notCompared_left.get(j-1).line);
 			compared_left_line.tag = Tag.notequal;
 			for(int i = 1; i < right_size; i++){
@@ -154,7 +154,7 @@ public class CompareLine implements CmpLine{
 				compared_right.add(compared_right_line);
 			}
 			compared_left.add(compared_left_line);
-		}		
+		}		*/
 	}
 	
 	public ArrayList<Line> getComparedLeft(){

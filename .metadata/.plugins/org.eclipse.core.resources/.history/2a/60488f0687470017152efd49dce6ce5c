@@ -1,0 +1,14 @@
+package model.compare.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class CompareMatchEqualTest {
+
+	@Test
+	public void testMatchEqualLine() {
+		fail("Not yet implemented");
+	}
+
+}

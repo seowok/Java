@@ -39,19 +39,19 @@ public class Text extends JTextPane
 	{
 		try 
 		{
-			String[] text = doc.getText(0, doc.getLength()).split("\n");
+			doc = this.getDocument();
 			int start = 0;
 			int end = 0;
 			int gray_color = 0;
 			int yellow_color = 0;//같은 색상이 연속될 경우
 			ComparedLine comparedline;
 			LineColorOffset linecoloroffset = null;
-			for(int i = 0; i < text.length; i ++)
+			for(int i = 0; i < arraylist.size(); i ++)
 			{
 				comparedline = (ComparedLine)arraylist.get(i);
 				if(comparedline.tag.equals(ComparedLine.Tag.space))
 				{
-					hilite.addHighlight(start, start + text[i].length() + 1, grayPainter);
+					hilite.addHighlight(start, start + comparedline.line.length() + 1, grayPainter);
 					if(gray_color == 0 && yellow_color == 0)
 						linecoloroffset = new LineColorOffset(start);
 					if(yellow_color == 1){
@@ -64,7 +64,7 @@ public class Text extends JTextPane
 				}
 				else if(comparedline.tag.equals(ComparedLine.Tag.notequal))
 				{
-					hilite.addHighlight(start, start + text[i].length() + 1, yellowPainter);
+					hilite.addHighlight(start, start + comparedline.line.length() + 1, yellowPainter);
 					if(gray_color == 0 && yellow_color == 0)
 						linecoloroffset = new LineColorOffset(start);
 					if(gray_color == 1){
@@ -75,7 +75,7 @@ public class Text extends JTextPane
 					}
 					yellow_color = 1;
 				}
-				start += text[i].length() + 1;
+				start += comparedline.line.length() + 1;
 			}
 		}
 		catch (BadLocationException e) {

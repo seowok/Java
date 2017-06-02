@@ -2,7 +2,7 @@ package model.compare;
 
 public class ComparedLine extends Line{
 	
-	ComparedLine(String str){
+	public ComparedLine(String str){
 		this.line = str;
 	}
 	

@@ -1,0 +1,14 @@
+package model.compare.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class CompareConstructTest {
+
+	@Test
+	public void testConstructLine() {
+		fail("Not yet implemented");
+	}
+
+}
