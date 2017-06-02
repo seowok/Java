@@ -68,13 +68,69 @@ public class CompareLine implements CmpLine{
 		blank_line.tag = Tag.space;
 		
 		int matching_line_count = 0;
+		int matching_left_index = 1;
+		int matching_right_index = 1;
+		
+		int left_count, right_count;
+		
+		for(int j = matching_left_index; j < left_size; j ++){
+			for(int i = matching_right_index; i < right_size; i ++){
+				if(table[i][j] == matching_line_count + 1){
+					left_count = j - matching_left_index;
+					right_count = i - matching_right_index;
+					
+					for(int num = matching_left_index+1; num < j; num ++){
+						compared_left_line = new ComparedLine(notCompared_left.get(num).line);
+						compared_left_line.tag = Tag.notequal;
+						compared_left.add(compared_left_line);
+					}
+					for(int num = matching_right_index+1; num < i; num ++){
+						compared_right_line = new ComparedLine(notCompared_right.get(num).line);
+						compared_right_line.tag = Tag.notequal;
+						compared_right.add(compared_right_line);
+					}
+					
+					if(left_count - right_count == 0){						
+						//null
+					}
+					else if(left_count - right_count > 0){
+						for(int num = 1; num < left_count - right_count; num ++){
+							compared_right.add(blank_line);
+						}
+					}
+					//left_count - right_count < 0
+					else{
+						for(int num = 1; num < right_count - left_count; num ++){
+							compared_left.add(blank_line);
+						}
+					}
+					compared_left_line = new ComparedLine(notCompared_left.get(j).line);
+					compared_left_line.tag = Tag.equal;
+					compared_left.add(compared_left_line);
+					
+					compared_right_line = new ComparedLine(notCompared_right.get(i).line);
+					compared_right_line.tag = Tag.equal;
+					compared_right.add(compared_right_line);	
+					
+					matching_line_count++;
+					matching_left_index = j;
+					matching_right_index = i;
+					
+					break;
+				}
+				
+			}
+		}
+		
+		
+		
 		
 		for(int j = 1; j < left_size; j++){
 			compared_left_line = new ComparedLine(notCompared_left.get(j-1).line);
 			compared_left_line.tag = Tag.notequal;
 			for(int i = 1; i < right_size; i++){
 				compared_right_line = new ComparedLine(notCompared_right.get(i-1).line);
-				if(table[i][j] == matching_line_count){
+				if(table[i][j] <= matching_line_count){
 					compared_right_line.tag = Tag.notequal;
 				}
 				else{

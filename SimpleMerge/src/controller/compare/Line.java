@@ -1,5 +1,5 @@
 package controller.compare;
 
-abstract class Line {
+public abstract class Line {
 	String line;
 }
