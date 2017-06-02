@@ -1,0 +1,48 @@
+package model.compare.test;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import javax.swing.JTextPane;
+
+import org.easymock.EasyMock;
+import org.junit.Before;
+import org.junit.Test;
+
+import model.compare.CompareLine;
+import model.compare.Line;
+import model.compare.NotComparedLine;
+
+public class CompareMatchEqualTest {
+
+	CompareLine compare_line;
+	ArrayList<Line> left_list;
+	ArrayList<Line> right_list;
+	
+	@Before
+	public void setUp(){
+		compare_line = new CompareLine();
+		
+		left_list = new ArrayList<Line>();
+		
+		for(int i = 0; i < 6; i ++){
+			Line line = new NotComparedLine("num " + i);
+			left_list.add(line);
+		}		
+		
+		right_list = new ArrayList<Line>();
+		
+		Line blank_line = new NotComparedLine("");
+		right_list.add(blank_line);
+		for(int i = 0; i < 6; i ++){
+			Line line = new NotComparedLine("num " + i);
+			right_list.add(line);
+		}		
+	}
+	
+	@Test
+	public void testMatchEqualLine() {
+		compare_line.matchEqualLine(left_list, right_list);
+	}
+
+}

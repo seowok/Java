@@ -1,0 +1,78 @@
+package model.compare.test;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import javax.swing.JTextPane;
+
+import org.easymock.EasyMock;
+import org.junit.Before;
+import org.junit.Test;
+
+import model.compare.CompareLine;
+import model.compare.ComparedLine;
+import model.compare.Line;
+import model.compare.NotComparedLine;
+
+public class CompareMatchEqualTest {
+
+	CompareLine compare_line;
+	ArrayList<Line> left_list;
+	ArrayList<Line> right_list;
+	
+	@Before
+	public void setUp(){
+		compare_line = new CompareLine();
+		
+		left_list = new ArrayList<Line>();
+		
+		for(int i = 0; i < 4; i ++){
+			Line line = new NotComparedLine("num " + i);
+			left_list.add(line);
+		}		
+		
+		right_list = new ArrayList<Line>();
+		
+		Line blank_line = new NotComparedLine("");
+		right_list.add(blank_line);
+		for(int i = 0; i < 4; i ++){
+			Line line = new NotComparedLine("num " + i);
+			right_list.add(line);
+		}	
+		
+		assertNotEquals(left_list, right_list);
+	}
+	
+	@Test
+	public void testMatchEqualLine() {
+		compare_line.matchEqualLine(left_list, right_list);
+		ArrayList<Line> compared_left_list;
+		ArrayList<Line> compared_right_list;
+		
+		compared_left_list = compare_line.getComparedLeft();
+		compared_right_list = compare_line.getComparedRight();
+		
+		assertNotEquals(compared_left_list, compared_right_list);		
+	}
+	
+	@Test
+	public void testMatchTag(){
+		compare_line.matchEqualLine(left_list, right_list);
+		ArrayList<Line> compared_left_list = compare_line.getComparedLeft();
+		ArrayList<Line> compared_right_list = compare_line.getComparedRight();
+		
+		ComparedLine compared_line = (ComparedLine) compared_left_list.get(0);
+		
+		assertEquals(ComparedLine.Tag.space, compared_line.tag);		
+	}
+	
+	@Test
+	public void testMatchLineNum(){
+		compare_line.matchEqualLine(left_list, right_list);
+		ArrayList<Line> compared_left_list = compare_line.getComparedLeft();
+		ArrayList<Line> compared_right_list = compare_line.getComparedRight();
+		
+		assertEquals(compared_left_list.get(2), compared_right_list.get(2););
+	}
+
+}

@@ -1,0 +1,31 @@
+package model.compare.test;
+
+import static org.junit.Assert.*;
+
+import java.util.List;
+
+import org.easymock.EasyMock;
+import org.junit.Before;
+import org.junit.Test;
+
+import model.compare.CompareLine;
+import model.compare.Line;
+
+public class CompareMatchEqualTest {
+
+	CompareLine compare_line;
+	List<Line> not_compared_list;
+	
+	@Before
+	public void setUp(){
+		compare_line = new CompareLine();
+		
+		not_compared_list = EasyMock.createMock(List.class);
+	}
+	
+	@Test
+	public void testMatchEqualLine() {
+		compare_line.constructLine(text_pane)
+	}
+
+}

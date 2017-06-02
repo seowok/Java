@@ -1,0 +1,32 @@
+package model.compare.test;
+
+import static org.junit.Assert.*;
+
+import javax.swing.JTextPane;
+
+import org.easymock.EasyMock;
+import org.junit.Test;
+
+import model.compare.CmpLine;
+import model.compare.CompareLine;
+import view.TextViewer;
+
+public class CompareConstructTest {	
+	
+	@Test
+	public void testConstructLine() {
+		CmpLine cmp_line = EasyMock.createMock(CmpLine.class);
+		assertNotNull(cmp_line);
+		
+		JTextPane test_left_pane = new JTextPane();
+		test_left_pane.setText("ab\ncd\nef\ngh\n");
+		
+		JTextPane test_right_pane = new JTextPane();
+		test_right_pane.setText("ab\ncd\nef\ngh\n");
+		EasyMock.expect(cmp_line.constructLine(new JTextPane()))
+		
+		
+		fail("Not yet implemented");
+	}
+
+}
