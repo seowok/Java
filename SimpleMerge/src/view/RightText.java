@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package view;
 
 import java.awt.Color;
@@ -21,3 +22,15 @@ public class RightText extends JTextPane{
 		setHighlighter(hilite); 
 	}
 }
+=======
+package view;
+
+import javax.swing.JTextArea;
+
+public class RightText extends JTextArea{
+	public RightText()
+	{
+		setText("Right");
+	}
+}
+>>>>>>> e45d3bbc1a3274c6fb6ade56f3e6a5e22427220a
