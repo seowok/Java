@@ -1,0 +1,5 @@
+package model.merge;
+
+public class MergeLine {
+
+}

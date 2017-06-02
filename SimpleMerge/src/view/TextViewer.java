@@ -40,17 +40,18 @@ public class TextViewer extends JPanel {
 		
 		setLayout(new GridLayout(1, 2, 10, 10));
 		lefttext = new Text();
-		lefttext.setText("a\nb\nc\nd\ne\n");
+		lefttext.setText("");
 		lefttext_scroll = new JScrollPane(lefttext);
 		add(lefttext_scroll);
 
 		righttext = new Text();
-		righttext.setText("f\na\nb\nc\nasasdas\nsdfssdf\na\nz\n");
+		righttext.setText("");
 		righttext_scroll = new JScrollPane(righttext);
 		add(righttext_scroll);
 	}
 	void highliteText() 
 	{
+		String contents = "";
 		left_notcomparedlines = compareline.constructLine(lefttext);
 		right_notcomparedlines = compareline.constructLine(righttext);
 		compareline.matchEqualLine(left_notcomparedlines, right_notcomparedlines);
@@ -58,9 +59,22 @@ public class TextViewer extends JPanel {
 		compared_left_lines = compareline.getComparedLeft();
 		compared_right_lines = compareline.getComparedRight();
 
+		for(int i = 0; i < compared_left_lines.size(); i++)
+		{
+			contents += compared_left_lines.get(i).line + "\n";
+		}
+		lefttext.setText(contents);
+		contents = "";
+		for(int i = 0; i < compared_right_lines.size(); i++)
+		{
+			contents += compared_right_lines.get(i).line + "\n";
+		}
+		righttext.setText(contents);
+		
+		
 		lefttext = lefttext.acceptLineColor(compared_left_lines);
 		righttext = righttext.acceptLineColor(compared_right_lines);
-
+		
 		left_linecolorlist = lefttext.getLineColorList();
 		right_linecolorlist = righttext.getLineColorList();
 	}
@@ -105,4 +119,6 @@ public class TextViewer extends JPanel {
 		int shift_end_line = left_linecolorlist.get(linesetcolorindex).getEndLine();
 		mrgline.moveLineTo(compared_right_lines , compared_left_lines , shift_start_line, shift_end_line);
 	}
+	public Text getLefttext(){ return lefttext; }
+	public Text getRighttext(){ return righttext; }
 }

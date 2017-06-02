@@ -32,7 +32,6 @@ public class Text extends JTextPane
 		//Test
 		//
 	}
-	
 	public Text acceptLineColor(ArrayList<Line> arraylist)
 	{
 		hilite.removeAllHighlights();
@@ -49,6 +48,7 @@ public class Text extends JTextPane
 			for(int i = 0; i < arraylist.size() ; i ++)
 			{
 				comparedline = (ComparedLine)arraylist.get(i);
+				System.out.println("<" + comparedline.tag + ">" + comparedline.line);
 				if(comparedline.tag.equals(ComparedLine.Tag.space))
 				{
 					hilite.addHighlight(start, start + comparedline.line.length(), grayPainter);
@@ -65,6 +65,7 @@ public class Text extends JTextPane
 						linecolorlist.get(linecoloroffset_index).addSameColorline();
 					}
 					gray_color = 1;
+					start += comparedline.line.length();
 				}
 				else if(comparedline.tag.equals(ComparedLine.Tag.notequal))
 				{
@@ -82,12 +83,12 @@ public class Text extends JTextPane
 						linecolorlist.get(linecoloroffset_index).addSameColorline();
 					}
 					yellow_color = 1;
+					start += comparedline.line.length();
 				}
-				if(i == arraylist.size() - 1 &&(gray_color == 1 || yellow_color == 1))
+				if(i == arraylist.size() - 1 && (gray_color == 1 || yellow_color == 1))
 				{
-					linecolorlist.get(linecoloroffset_index).setColorEnd(start + comparedline.line.length());
+					linecolorlist.get(linecoloroffset_index).setColorEnd(start + comparedline.line.length() - 1);
 				}
-				start += comparedline.line.length() + 1;
 			}
 		}
 		catch (BadLocationException e) {
@@ -120,6 +121,7 @@ public class Text extends JTextPane
 			}
 		}
 		hilite.addHighlight(linecolorlist.get(index).getColorStart() ,linecolorlist.get(index).getColorEnd(), redPainter);
+		System.out.println(linecolorlist.get(index).getColorStart() + "@" + linecolorlist.get(index).getColorEnd());
 	}
 	public ArrayList<LineColorOffset> getLineColorList()
 	{

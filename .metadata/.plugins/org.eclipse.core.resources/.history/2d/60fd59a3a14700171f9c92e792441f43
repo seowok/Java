@@ -1,0 +1,5 @@
+package controller.file;
+
+public class StoreFile {
+
+}
