@@ -2,14 +2,17 @@ package controller.compare;
 
 import java.util.ArrayList;
 
+import javax.swing.JTextPane;
+
 public interface CmpLine {
 
-	//transform Paragraph data to structured ArrayList data
-	//return ArrayList<Paragraph>
-	public ArrayList<Line> constructLine(Paragraph notCompared_PG);
+	//transform contents data to structured ArrayList data
+	//return ArrayList<Line>
+	public ArrayList<Line> constructLine(JTextPane text_pane);
 	
-	/*each line in paragraph is moved to match the position of lines
+	/*each line in ArrayList is moved to match the position of lines
 	 * and have tag option that used to highlight text color*/
 	//please check the Editable option value
-	public void matchEqualLine(ArrayList<Line> notCompared_PG_contents);
+	//return two of ArrayList<Line> compared_contents
+	public void matchEqualLine(ArrayList<Line> notCompared_left, ArrayList<Line> notCompared_right);
 }

@@ -9,6 +9,7 @@ public class MenuBar extends JMenuBar{
 	private MenuTools menu_tools;
 	private MenuView menu_view;
 	private MenuWindow menu_window;
+	private TextViewer textviewer;
 	
 	public MenuBar()
 	{
@@ -27,8 +28,8 @@ public class MenuBar extends JMenuBar{
 		menu_help = new MenuHelp(SMConstants.TITLE_HELPMENU);
 		add(menu_help);
 	}
-	public void initial()
+	public void initial(TextViewer textviewer)
 	{
-		
+		this.textviewer = textviewer;
 	}
 }

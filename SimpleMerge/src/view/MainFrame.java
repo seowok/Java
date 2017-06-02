@@ -22,13 +22,14 @@ public class MainFrame extends JFrame{
 		locationpanel = new LocationPanel();
 		add(BorderLayout.WEST, locationpanel);
 	}
-	
 	public static MainFrame getInstance()
 	{
 		return mainframe;
 	}
 	
 	public void initial(){
+		toolbar.initial(textviewer);
+		menubar.initial(textviewer);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(SMConstants.WIDTH_MAINFRAME, SMConstants.HEIGHT_MAINFRAME);
 		this.setVisible(true);
