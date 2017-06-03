@@ -51,40 +51,45 @@ public class Text extends JTextPane
 				System.out.println("<" + comparedline.tag + ">" + comparedline.line);
 				if(comparedline.tag.equals(ComparedLine.Tag.space))
 				{
-					hilite.addHighlight(start, start + comparedline.line.length(), grayPainter);
+					//System.out.println(comparedline.line.length());
+					//System.out.println("GRAY-CONTENTS : " + comparedline.line);
 					if(gray_color == 0 && yellow_color == 0)
 						linecolorlist.add(new LineColorOffset(start));
 					if(yellow_color == 1){
 						linecolorlist.get(linecoloroffset_index).setColorEnd(start + comparedline.line.length());
 						linecolorlist.add(new LineColorOffset(start));
-						linecoloroffset_index = i;
+						linecoloroffset_index++;
 						yellow_color = 0;
 					}
 					if(gray_color == 1)
 					{
 						linecolorlist.get(linecoloroffset_index).addSameColorline();
 					}
+					hilite.addHighlight(start, start + 1, grayPainter);
 					gray_color = 1;
-					start += comparedline.line.length();
+					start += 1;
 				}
 				else if(comparedline.tag.equals(ComparedLine.Tag.notequal))
 				{
-					hilite.addHighlight(start, start + comparedline.line.length(), yellowPainter);
+					//System.out.println("YELLOW" + start + "~" + (start + comparedline.line.length()));
 					if(gray_color == 0 && yellow_color == 0)
 						linecolorlist.add(new LineColorOffset(start));
 					if(gray_color == 1){
 						linecolorlist.get(linecoloroffset_index).setColorEnd(start + comparedline.line.length());
 						linecolorlist.add(new LineColorOffset(start));
-						linecoloroffset_index = i;
+						linecoloroffset_index++;
 						gray_color = 0;
 					}
 					if(yellow_color == 1)
 					{
 						linecolorlist.get(linecoloroffset_index).addSameColorline();
 					}
+					hilite.addHighlight(start, start + comparedline.line.length() + 1, yellowPainter);
 					yellow_color = 1;
-					start += comparedline.line.length();
+					start += comparedline.line.length() + 1;
 				}
+				else
+					start += comparedline.line.length() + 1;
 				if(i == arraylist.size() - 1 && (gray_color == 1 || yellow_color == 1))
 				{
 					linecolorlist.get(linecoloroffset_index).setColorEnd(start + comparedline.line.length() - 1);
