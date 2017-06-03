@@ -24,22 +24,36 @@ public class CompareMatchEqualTest {
 	public void setUp(){
 		compare_line = new CompareLine();
 		left_list = new ArrayList<Line>();
-		Line line;
 		
-		for(int i = 0; i < 4; i ++){
-			line = new NotComparedLine("num " + i);
-			left_list.add(line);
-		}		
+		/*left_list.add(new NotComparedLine("Apple"));
+		left_list.add(new NotComparedLine("Onion"));
+		left_list.add(new NotComparedLine("A"));
+		left_list.add(new NotComparedLine("B"));
+		left_list.add(new NotComparedLine("C"));
+		left_list.add(new NotComparedLine("D"));*/
+		
+		left_list.add(new NotComparedLine("A"));
+		left_list.add(new NotComparedLine("C"));
+		left_list.add(new NotComparedLine("A"));
+		left_list.add(new NotComparedLine("Y"));
+		left_list.add(new NotComparedLine("K"));
+		left_list.add(new NotComparedLine("P"));
 		
 		right_list = new ArrayList<Line>();
 		
-		Line blank_line = new NotComparedLine("");
-		right_list.add(blank_line);
-		for(int i = 0; i < 4; i ++){
-			line = new NotComparedLine("num " + i);
-			right_list.add(line);
-		}	
+		/*right_list.add(new NotComparedLine("A"));
+		right_list.add(new NotComparedLine("B"));
+		right_list.add(new NotComparedLine("asdfsadf"));
+		right_list.add(new NotComparedLine("sasgeae"));
+		right_list.add(new NotComparedLine("a"));
+		right_list.add(new NotComparedLine("z"));*/
 		
+		right_list.add(new NotComparedLine("C"));
+		right_list.add(new NotComparedLine("A"));
+		right_list.add(new NotComparedLine("P"));
+		right_list.add(new NotComparedLine("C"));
+		right_list.add(new NotComparedLine("A"));
+		right_list.add(new NotComparedLine("K"));
 		assertNotEquals(left_list, right_list);
 	}
 	
@@ -49,15 +63,21 @@ public class CompareMatchEqualTest {
 		ArrayList<Line> compared_left_list;
 		ArrayList<Line> compared_right_list;
 		
+		ComparedLine compared_line;
+		
 		compared_left_list = compare_line.getComparedLeft();
 		compared_right_list = compare_line.getComparedRight();
 		
+		System.out.println("//¿ŞÂÊ//");
 		for(Line str : compared_left_list){
-			System.out.println(str.line);
+			compared_line = (ComparedLine)str;
+			System.out.println("* " + "<" + compared_line.tag + ">" + compared_line.line);
 		}
 		
+		System.out.println("//¿À¸¥ÂÊ//");
 		for(Line str : compared_right_list){
-			System.out.println(str.line);
+			compared_line = (ComparedLine)str;
+			System.out.println("* " + "<" + compared_line.tag + ">" + compared_line.line);
 		}
 		
 		assertEquals(compared_left_list.size(), compared_right_list.size());
