@@ -40,8 +40,9 @@ public class Text extends JTextPane
 		{
 			doc = this.getDocument();
 			int start = 0;
-			int gray_color = 0;
-			int yellow_color = 0;
+			int space = 0;
+			int not_equal = 0;
+			int equal = 0;
 			int linecoloroffset_index = 0;
 			
 			ComparedLine comparedline;
@@ -51,48 +52,91 @@ public class Text extends JTextPane
 				System.out.println("<" + comparedline.tag + ">" + comparedline.line);
 				if(comparedline.tag.equals(ComparedLine.Tag.space))
 				{
-					hilite.addHighlight(start, start + comparedline.line.length(), grayPainter);
-					if(gray_color == 0 && yellow_color == 0)
+					//System.out.println(comparedline.line.length());
+					//System.out.println("GRAY-CONTENTS : " + comparedline.line);
+					if(space == 0 && not_equal == 0 && equal == 0){
 						linecolorlist.add(new LineColorOffset(start));
-					if(yellow_color == 1){
-						linecolorlist.get(linecoloroffset_index).setColorEnd(start + comparedline.line.length());
+						linecolorlist.get(0).setStartLine(i);
+					}
+					if(equal == 1){
+						linecoloroffset_index++;
 						linecolorlist.add(new LineColorOffset(start));
-						linecoloroffset_index = i;
-						yellow_color = 0;
+						linecolorlist.get(linecoloroffset_index).setStartLine(i);
+						equal = 0;
 					}
-					if(gray_color == 1)
-					{
-						linecolorlist.get(linecoloroffset_index).addSameColorline();
+					if(not_equal == 1){
+						linecolorlist.get(linecoloroffset_index).setColorEnd(start);
+						linecolorlist.get(linecoloroffset_index).setEndLine(i - 1);
+		
+						linecoloroffset_index++;
+						linecolorlist.add(new LineColorOffset(start));
+						linecolorlist.get(linecoloroffset_index).setStartLine(i);
+						not_equal = 0;
+						equal = 0;
 					}
-					gray_color = 1;
-					start += comparedline.line.length();
+					hilite.addHighlight(start, start + 1, grayPainter);
+					space = 1;
+					start += 1;
 				}
 				else if(comparedline.tag.equals(ComparedLine.Tag.notequal))
 				{
-					hilite.addHighlight(start, start + comparedline.line.length(), yellowPainter);
-					if(gray_color == 0 && yellow_color == 0)
+					//System.out.println("YELLOW" + start + "~" + (start + comparedline.line.length()));
+					
+					if(space == 0 && not_equal == 0 && equal == 0){
 						linecolorlist.add(new LineColorOffset(start));
-					if(gray_color == 1){
-						linecolorlist.get(linecoloroffset_index).setColorEnd(start + comparedline.line.length());
-						linecolorlist.add(new LineColorOffset(start));
-						linecoloroffset_index = i;
-						gray_color = 0;
+						linecolorlist.get(0).setStartLine(i);
 					}
-					if(yellow_color == 1)
+					if(equal == 1)
 					{
-						linecolorlist.get(linecoloroffset_index).addSameColorline();
+						linecoloroffset_index++;
+						linecolorlist.add(new LineColorOffset(start));
+						linecolorlist.get(linecoloroffset_index).setStartLine(i);
+						equal = 0;
 					}
-					yellow_color = 1;
-					start += comparedline.line.length();
+					if(space == 1){
+						linecolorlist.get(linecoloroffset_index).setColorEnd(start);
+						linecolorlist.get(linecoloroffset_index).setEndLine(i - 1);
+		
+						linecoloroffset_index++;
+						linecolorlist.add(new LineColorOffset(start));
+						linecolorlist.get(linecoloroffset_index).setStartLine(i);
+						equal = 0;
+						space = 0;
+					}
+					
+					hilite.addHighlight(start, start + comparedline.line.length() + 1, yellowPainter);
+					not_equal = 1;
+					start += comparedline.line.length() + 1;
 				}
-				if(i == arraylist.size() - 1 && (gray_color == 1 || yellow_color == 1))
+				else if(comparedline.tag.equals(ComparedLine.Tag.equal))
 				{
-					linecolorlist.get(linecoloroffset_index).setColorEnd(start + comparedline.line.length() - 1);
+					if(space == 1 || not_equal == 1)
+					{
+						linecolorlist.get(linecoloroffset_index).setColorEnd(start);
+						linecolorlist.get(linecoloroffset_index).setEndLine(i - 1);
+						space = 0;
+						not_equal = 0;
+					}
+					equal = 1;
+					start += comparedline.line.length() + 1;
+				}
+				if(i == arraylist.size() - 1)
+				{
+					System.out.println("üũ");
+					linecolorlist.get(linecoloroffset_index).setColorEnd(start);
+					linecolorlist.get(linecoloroffset_index).setEndLine(i);
 				}
 			}
+			System.out.println("LineColorList LENGTH : " + linecolorlist.size());
+			System.out.println("END : " + linecolorlist.get(1).getColorEnd());
 		}
 		catch (BadLocationException e) {
 			e.printStackTrace();
+		}
+		for(int i = 0; i < linecolorlist.size(); i ++)
+		{
+			//System.out.println("(" + i + ")" + " : " + linecolorlist.get(i).getStartLine() + "," + linecolorlist.get(i).getEndLine());
+			System.out.println("(" + i + ")" + " : " + linecolorlist.get(i).getColorStart() + "," + linecolorlist.get(i).getColorEnd());
 		}
 		/*try {
 			hilite.addHighlight(0, 11, yellowPainter);
@@ -121,7 +165,7 @@ public class Text extends JTextPane
 			}
 		}
 		hilite.addHighlight(linecolorlist.get(index).getColorStart() ,linecolorlist.get(index).getColorEnd(), redPainter);
-		System.out.println(linecolorlist.get(index).getColorStart() + "@" + linecolorlist.get(index).getColorEnd());
+		//System.out.println(linecolorlist.get(index).getColorStart() + "@" + linecolorlist.get(index).getColorEnd());
 	}
 	public ArrayList<LineColorOffset> getLineColorList()
 	{
@@ -132,19 +176,21 @@ public class Text extends JTextPane
 class LineColorOffset
 {
 	private int color_start;
-	private int color_end;
+	private int color_end = 0;
 	private int start_line;
 	private int end_line;
-	private int sameline = 0;
 	
 	public LineColorOffset(int color_start)
 	{
 		this.color_start = color_start;
 		this.start_line = start_line;
-		this.end_line = start_line;
 	}
 	public int getStartLine(){ return start_line; }
 	public int getEndLine(){ return end_line; }
+	public void setStartLine(int start_line)
+	{
+		this.start_line = start_line;
+	}
 	public void setEndLine(int end_line)
 	{
 		this.end_line = end_line;
@@ -160,10 +206,5 @@ class LineColorOffset
 	public int getColorEnd() 
 	{
 		return color_end;
-	}
-	public void addSameColorline()
-	{
-		sameline += 1;
-		end_line += 1;
 	}
 }
