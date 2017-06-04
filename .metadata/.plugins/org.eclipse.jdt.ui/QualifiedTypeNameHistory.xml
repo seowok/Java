@@ -22,13 +22,13 @@
 <fullyQualifiedTypeName name="org.junit.Before"/>
 <fullyQualifiedTypeName name="javax.management.NotCompliantMBeanException"/>
 <fullyQualifiedTypeName name="org.junit.Test"/>
-<fullyQualifiedTypeName name="model.compare.CompareLine"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.easymock.EasyMock"/>
 <fullyQualifiedTypeName name="model.compare.Line"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="model.compare.NotComparedLine"/>
 <fullyQualifiedTypeName name="model.compare.ComparedLine.Tag"/>
-<fullyQualifiedTypeName name="model.compare.ComparedLine"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="model.compare.NotComparedLine"/>
+<fullyQualifiedTypeName name="model.compare.CompareLine"/>
+<fullyQualifiedTypeName name="model.compare.ComparedLine"/>
 </qualifiedTypeNameHistroy>
