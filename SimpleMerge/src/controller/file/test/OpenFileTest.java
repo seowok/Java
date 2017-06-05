@@ -8,30 +8,24 @@ import org.junit.Test;
 import controller.file.OpenFile;
 
 public class OpenFileTest {
+	
+	OpenFile open_file;
 
 	@Before
 	public void setUp(){
-		OpenFile open_file;
+		open_file = new OpenFile();
 	}
 	
 	@Test
 	public void testGetLfile() {
-		open_file = new OpenFile();
+		open_file.GetLeftFilePath();
+		assertNotNull(open_file.getLfile());
 	}
 
 	@Test
 	public void testGetRfile() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetLeftFilePath() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetRightFilePath() {
-		fail("Not yet implemented");
+		open_file.GetRightFilePath();
+		assertNotNull(open_file.getRfile());
 	}
 
 }

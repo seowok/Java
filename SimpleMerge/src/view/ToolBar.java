@@ -3,7 +3,7 @@ package view;
 import javax.swing.JToolBar;
 import javax.swing.text.BadLocationException;
 
-import controller.file.BringFileView;
+import view.BringFileView;
 import controller.file.NewFile;
 import controller.file.OpenFile;
 import controller.file.StoreFile;
@@ -66,10 +66,10 @@ public class ToolBar extends JToolBar {
                                                       // 하는
                                                       // 창으로
                                                       // 간다.
-               new NewFile(textviewer);
+               new NewFileView(textviewer);
 
          } else if (button.getActionCommand().equals(ToolBarButtons.LoadFile.name())) {
-        	 new BringFileView();
+        	 new BringFileView(textviewer);
          } else if (button.getActionCommand().equals(ToolBarButtons.SaveFile.name())) {
              StoreFile s = new StoreFile();  
              s.LeftStoreFile(textviewer);
