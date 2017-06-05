@@ -19,12 +19,12 @@ public class SMConstants {
 	public static final String TITLE_VIEWMENU = "º¸±â(V)";
 	public static final String TITLE_WINDOWMENU = "Ã¢(W)";
 	//Menu
-	public static enum EditMenuItems {Menu1, Menu2, Menu3, Menu4};
 	public static enum FileMenuItems {Menu1, Menu2, Menu3, Menu4};
-	public static enum HelpMenuItems {Menu1, Menu2, Menu3, Menu4};
-	public static enum PluginsMenuItems {Menu1, Menu2, Menu3, Menu4};
-	public static enum ToolsMenuItems {Menu1, Menu2, Menu3, Menu4};
-	public static enum ViewMenuItems {Menu1, Menu2, Menu3, Menu4};
-	public static enum WindowMenuItems {Menu1, Menu2, Menu3, Menu4};
+	public static enum EditMenuItems {Undo, Restart, Cut, Copy, Paste, LineDiffChoice, AllChoice, Find, Change, Script, Details, BookMark, Move, Settings};
+	public static enum HelpMenuItems {Instruction, ReleaseNote, Translation, Settings,CompressFile,GNELisence,WinmergeINFO}
+	public static enum PluginsMenuItems {List,UnAutoUnpack, AutoUnpack, UnpackerUseEdit,Prediffer,PluginReload};
+	public static enum ToolsMenuItems {Filter, PatchMaking, ReportMaking};
+	public static enum ViewMenuItems {SelectFont,UseBasicFont,Enlarge,Reduce,SentenceEmphasize,LockWindow,SeeBlank,SeeLineDifference,SeeLineNumber,AutoLineChanging,ChangeLeftRight,ToolCollection,StateLine,TabToolCollection,SeeSelectCompare,SeeLocation,Language,Renew};
+	public static enum WindowMenuItems {Close,CloseAll,ChangeWindow,VerticalSort,HorizentalSort,StepSort}
 	
 }

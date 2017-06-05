@@ -14,11 +14,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import view.TextViewer;
 
 public interface SaveFile {
-   
-	public void LeftStoreFile(TextViewer t);
-
+	
+	public void LeftStoreFile(TextViewer t); // 왼쪽 문서 저장하기
+	
 	public void RightStoreFile(TextViewer t);
-   
+	
    //read text data from JtextArea
    //save text buffers to file in file path
    //return {TRUE : SUCCESS} {FALSE : ERROR}

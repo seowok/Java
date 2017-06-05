@@ -23,13 +23,11 @@ public class MenuTools extends JMenu{
 	private class ToolsMenuHandler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			switch(ToolsMenuItems.valueOf(e.getActionCommand())){
-				case Menu1 :
+				case Filter :
 					break;
-				case Menu2 :
+				case PatchMaking :
 					break;
-				case Menu3 :
-					break;
-				case Menu4 :
+				case ReportMaking :
 					break;
 			}
 			

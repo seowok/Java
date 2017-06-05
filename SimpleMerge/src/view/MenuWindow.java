@@ -23,13 +23,17 @@ public class MenuWindow extends JMenu{
 	private class WindowMenuHandler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			switch(WindowMenuItems.valueOf(e.getActionCommand())){
-				case Menu1 :
+				case Close :
 					break;
-				case Menu2 :
+				case CloseAll :
 					break;
-				case Menu3 :
+				case ChangeWindow :
 					break;
-				case Menu4 :
+				case VerticalSort :
+					break;
+				case HorizentalSort :
+					break;
+				case StepSort :
 					break;
 			}
 			

@@ -23,13 +23,41 @@ public class MenuView extends JMenu{
 	private class ViewMenuHandler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			switch(ViewMenuItems.valueOf(e.getActionCommand())){
-				case Menu1 :
+				case SelectFont :
 					break;
-				case Menu2 :
+				case UseBasicFont :
 					break;
-				case Menu3 :
+				case Enlarge:
 					break;
-				case Menu4 :
+				case Reduce :
+					break;
+				case SentenceEmphasize :
+					break;
+				case LockWindow :
+					break;
+				case SeeBlank :
+					break;
+				case SeeLineDifference :
+					break;
+				case SeeLineNumber :
+					break;
+				case AutoLineChanging :
+					break;
+				case ChangeLeftRight :
+					break;
+				case ToolCollection :
+					break;
+				case StateLine :
+					break;
+				case TabToolCollection :
+					break;
+				case SeeSelectCompare :
+					break;
+				case SeeLocation :
+					break;
+				case Language:
+					break;
+				case Renew :
 					break;
 			}
 			

@@ -1,75 +1,70 @@
 package controller.file;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import controller.file.LoadData;
 import view.TextViewer;
 
-public class OpenFile extends JFrame implements LoadFile{
+public class OpenFile extends JFrame {
 
-   File f =null ;
-   TextViewer b;
-   
-   @Override
-   public void LeftOpenFile(TextViewer c) {
+	File Lfile = null;
+	File Rfile = null;
+	TextViewer t;
 
-      JFileChooser jc = new JFileChooser();
-      FileNameExtensionFilter filter = new FileNameExtensionFilter("*,txt", "txt");
-      jc.setFileFilter(filter);
-      b = c;
+	// 파일경로를 openfile에서 먼저 받아온 다음에 확인을 누르면 lefttext에 쓰는 함수
+	
+	
+	public File getLfile(){
+	  return Lfile;
+	}
+	public File getRfile(){
+		return Rfile;
+	}
+	
+	
+	
+	public void GetLeftFilePath() {
 
-      if (jc.showOpenDialog(this) == jc.APPROVE_OPTION) {
-         try {
-            f = jc.getSelectedFile();
-            
-               loadFile(b.getLefttext(), f);
-         
-         } catch (Exception e) {
+		JFileChooser jc = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("*,txt", "txt");
+		jc.setFileFilter(filter);
 
-         }
-         b.setVisible(true);
-      }
-   }
+		if (jc.showOpenDialog(this) == jc.APPROVE_OPTION) {
+			try {
+				Lfile = jc.getSelectedFile();
 
-   @Override
-   public void RightOpenFile(TextViewer c) {
+			} catch (Exception e) {
 
-      JFileChooser jc = new JFileChooser();
-      FileNameExtensionFilter filter = new FileNameExtensionFilter("*,txt", "txt");
-      jc.setFileFilter(filter);
-      b = c;
+			}
 
-      if (jc.showOpenDialog(this) == jc.APPROVE_OPTION) {
-         try {
-            f = jc.getSelectedFile();
-           loadFile(b.getRighttext(), f);
-
-         } catch (Exception e) {
-
-         }
-      }
-   }
-
-   @Override
-	public boolean loadFile(JTextPane text, File f) {
-		// TODO Auto-generated method stub
-		
-		//clear text in text area
-		text.setText("");
-		//write down text data in text area
-		try {
-		text.setPage(f.toURI().toURL());
-		
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
 		}
 		
-		return true;
+		else {
+			Lfile = null;
+		}
+
+	}
+
+	public void GetRightFilePath() {
+
+		JFileChooser jc = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("*,txt", "txt");
+		jc.setFileFilter(filter);
+
+		if (jc.showOpenDialog(this) == jc.APPROVE_OPTION) {
+			try {
+				Rfile = jc.getSelectedFile();
+
+			} catch (Exception e) {
+
+			}
+		}
+		else {
+			Rfile = null;
+		}
 	}
 }

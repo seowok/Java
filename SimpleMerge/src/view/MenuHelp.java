@@ -24,13 +24,19 @@ public class MenuHelp extends JMenu{
 	private class HelpMenuHandler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			switch(HelpMenuItems.valueOf(e.getActionCommand())){
-				case Menu1 :
+				case Instruction :
 					break;
-				case Menu2 :
+				case ReleaseNote :
 					break;
-				case Menu3 :
+				case Translation :
 					break;
-				case Menu4 :
+				case Settings :
+					break;
+				case CompressFile :
+					break;
+				case GNELisence :
+					break;
+				case WinmergeINFO :
 					break;
 			}
 			

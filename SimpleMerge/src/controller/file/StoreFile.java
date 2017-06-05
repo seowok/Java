@@ -24,7 +24,8 @@ public class StoreFile extends JFrame implements SaveFile{
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("*,txt", "txt");
 		jc.setFileFilter(filter);
 
-		if (jc.showSaveDialog(this) == jc.APPROVE_OPTION) {
+		int left = jc.showDialog(this, "왼쪽 파일을 저장합니다.");
+		if (left == jc.APPROVE_OPTION) {
 
 			try {
 				File f = jc.getSelectedFile();
@@ -45,8 +46,8 @@ public class StoreFile extends JFrame implements SaveFile{
 		JFileChooser jc = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("*,txt", "txt");
 		jc.setFileFilter(filter);
-
-		if (jc.showSaveDialog(this) == jc.APPROVE_OPTION) {
+		int right = jc.showDialog(this, "오른쪽 파일을 저장합니다.");
+		if (right == jc.APPROVE_OPTION) {
 			try {
 				File f = jc.getSelectedFile();
 				FileWriter fw = new FileWriter(f);
@@ -59,11 +60,11 @@ public class StoreFile extends JFrame implements SaveFile{
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean saveFile(JTextPane text, File f , FileWriter fw) {
 	      // TODO Auto-generated method stub
-	      
+
 	      try {
 	         
 	         String str = text.getText().trim();
@@ -80,4 +81,5 @@ public class StoreFile extends JFrame implements SaveFile{
 	      
 	      return true;
 	   }
+
 }

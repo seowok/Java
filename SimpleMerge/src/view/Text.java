@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Document;
@@ -30,8 +32,7 @@ public class Text extends JTextPane
 	{
 		hilite = new MyHighlighter();
 		setHighlighter(hilite); 
-		//Test
-		//
+		//this.getDocument().addDocumentListener(this);
 	}
 	public Text acceptLineColor(ArrayList<Line> arraylist)
 	{
@@ -131,7 +132,6 @@ public class Text extends JTextPane
 				}
 			}
 			System.out.println("LineColorList LENGTH : " + linecolorlist.size());
-			System.out.println("END : " + linecolorlist.get(1).getColorEnd());
 		}
 		catch (BadLocationException e) {
 			e.printStackTrace();
@@ -168,53 +168,5 @@ public class Text extends JTextPane
 	public void setLineColorOffsetArray(ArrayList<LineColorOffset> linecolorlist)
 	{
 		this.linecolorlist = linecolorlist;
-	}
-}
-//색칠된 구간의 위치를 저장
-class LineColorOffset
-{
-	private int color_start;
-	private int color_end = 0;
-	private int start_line;
-	private int end_line;
-	ComparedLine.Tag tag;
-	
-	public LineColorOffset(int color_start)
-	{
-		this.color_start = color_start;
-	}
-	public int getStartLine(){ return start_line; }
-	public int getEndLine(){ return end_line; }
-	public void setStartLine(int start_line)
-	{
-		this.start_line = start_line;
-	}
-	public void setEndLine(int end_line)
-	{
-		this.end_line = end_line;
-	}
-	public void setColorStart(int color_start)
-	{
-		this.color_start = color_start;
-	}
-	public void setColorEnd(int color_end)
-	{
-		this.color_end = color_end;
-	}
-	public int getColorStart()
-	{
-		return color_start;
-	}
-	public int getColorEnd() 
-	{
-		return color_end;
-	}
-	public void setTag(ComparedLine.Tag tag)
-	{ 
-		this.tag = tag; 
-	}
-	public ComparedLine.Tag getTag()
-	{
-		return tag;
 	}
 }

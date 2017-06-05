@@ -23,17 +23,35 @@ public class MenuEdit extends JMenu{
 	private class EditMenuHandler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			switch(EditMenuItems.valueOf(e.getActionCommand())){
-				case Menu1 :
+				case Undo :
 					break;
-				case Menu2 :
+				case Restart :
 					break;
-				case Menu3 :
+				case Cut :
 					break;
-				case Menu4 :
+				case Copy :
+					break;
+				case Paste :
+					break;
+				case LineDiffChoice:
+					break;
+				case AllChoice:
+					break;
+				case Find:
+					break;
+				case Change:
+					break;
+				case Script:
+					break;
+				case Details:
+					break;
+				case BookMark:
+					break;
+				case Move:
+					break;
+				case Settings:
 					break;
 			}
-			
 		}
-		
 	}
 }

@@ -3,6 +3,7 @@ package view;
 import javax.swing.JToolBar;
 import javax.swing.text.BadLocationException;
 
+import controller.file.BringFileView;
 import controller.file.NewFile;
 import controller.file.OpenFile;
 import controller.file.StoreFile;
@@ -16,18 +17,22 @@ import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.concurrent.SynchronousQueue;
 
 public class ToolBar extends JToolBar {
    private ButtonGroup buttonGroup;
    private ToolBarHandler toolBarHandler;
    private TextViewer textviewer;
-
+   private ArrayList<JButton> jbtn_arraylist;
+   
    public ToolBar(String title) {
       super(title);
       toolBarHandler = new ToolBarHandler();
       buttonGroup = new ButtonGroup();
       JButton jbtn;
+      jbtn_arraylist = new ArrayList<JButton>();
+      
       for (ToolBarButtons btn : ToolBarButtons.values()) {
          jbtn = new JButton();
          jbtn.setIcon(new ImageIcon(SMConstants.IMG_URL + btn.toString() + SMConstants.TOOLBAR_BTN));
@@ -35,6 +40,8 @@ public class ToolBar extends JToolBar {
          jbtn.setActionCommand(btn.toString());
          buttonGroup.add(jbtn);
          this.add(jbtn);
+         jbtn_arraylist.add(jbtn);
+         
       }
    }
 
@@ -62,13 +69,11 @@ public class ToolBar extends JToolBar {
                new NewFile(textviewer);
 
          } else if (button.getActionCommand().equals(ToolBarButtons.LoadFile.name())) {
-            OpenFile o = new OpenFile();
-            o.LeftOpenFile(textviewer);
-
+        	 new BringFileView();
          } else if (button.getActionCommand().equals(ToolBarButtons.SaveFile.name())) {
-            StoreFile s = new StoreFile();
-            s.LeftStoreFile(textviewer);
-
+             StoreFile s = new StoreFile();  
+             s.LeftStoreFile(textviewer);
+             s.RightStoreFile(textviewer);
          } else if (button.getActionCommand().equals(ToolBarButtons.ShiftRight.name())) {
         	 try {
 				textviewer.shiftRight();
@@ -76,6 +81,8 @@ public class ToolBar extends JToolBar {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+        	 jbtn_arraylist.get(11).setEnabled(false);//ShiftRight Activation
+             jbtn_arraylist.get(12).setEnabled(false);//ShiftLeft Activation
          } else if (button.getActionCommand().equals(ToolBarButtons.ShiftLeft.name())) {
         	 try {
 				textviewer.shiftLeft();
@@ -83,6 +90,8 @@ public class ToolBar extends JToolBar {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+        	 jbtn_arraylist.get(11).setEnabled(false);//ShiftRight Activation
+             jbtn_arraylist.get(12).setEnabled(false);//ShiftLeft Activation
          } else if (button.getActionCommand().equals(ToolBarButtons.Undo.name())) {
 
          } else if (button.getActionCommand().equals(ToolBarButtons.Redo.name())) {
@@ -96,6 +105,8 @@ public class ToolBar extends JToolBar {
                // TODO Auto-generated catch block
                e1.printStackTrace();
             }
+            jbtn_arraylist.get(11).setEnabled(true);//ShiftRight Activation
+            jbtn_arraylist.get(12).setEnabled(true);//ShiftLeft Activation
          } else if (button.getActionCommand().equals(ToolBarButtons.PrevDiff.name())) {
             try {
                textviewer.prevDiff();
@@ -103,12 +114,24 @@ public class ToolBar extends JToolBar {
                // TODO Auto-generated catch block
                e1.printStackTrace();
             }
+            jbtn_arraylist.get(11).setEnabled(true);//ShiftRight Activation
+            jbtn_arraylist.get(12).setEnabled(true);//ShiftLeft Activation
          } else if (button.getActionCommand().equals(ToolBarButtons.FirstDiff.name())) {
-
+        	 try {
+				textviewer.firstDiff();
+			} catch (BadLocationException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
          } else if (button.getActionCommand().equals(ToolBarButtons.NowDiff.name())) {
 
          } else if (button.getActionCommand().equals(ToolBarButtons.LastDiff.name())) {
-
+        	 try {
+ 				textviewer.lastDiff();
+ 			} catch (BadLocationException e1) {
+ 				// TODO Auto-generated catch block
+ 				e1.printStackTrace();
+ 			}
          } else if (button.getActionCommand().equals(ToolBarButtons.ShiftLeftPro.name())) {
 
          } else if (button.getActionCommand().equals(ToolBarButtons.ShiftRightPro.name())) {

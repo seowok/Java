@@ -23,13 +23,17 @@ public class MenuPlugins extends JMenu{
 	private class PluginsMenuHandler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			switch(PluginsMenuItems.valueOf(e.getActionCommand())){
-				case Menu1 :
+				case List :
 					break;
-				case Menu2 :
+				case UnAutoUnpack :
 					break;
-				case Menu3 :
+				case AutoUnpack :
 					break;
-				case Menu4 :
+				case UnpackerUseEdit :
+					break;
+				case Prediffer :
+					break;
+				case PluginReload :
 					break;
 			}
 			
