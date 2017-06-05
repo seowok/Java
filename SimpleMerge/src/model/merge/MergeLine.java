@@ -9,7 +9,9 @@ public class MergeLine implements MrgLine{
 	{
 		for(int i = start_line; i <= end_line; i++)
 		{
-			dest_contents.get(i).line = src_contents.get(i).line;
+			dest_contents.get(i).line = src_contents.get(i).line + "";
+			System.out.println(dest_contents.get(i).line);
 		}
+		System.out.println(dest_contents.get(0).line);
 	}
 }

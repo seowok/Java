@@ -69,7 +69,7 @@ public class ToolBar extends JToolBar {
             s.LeftStoreFile(textviewer);
 
          } else if (button.getActionCommand().equals(ToolBarButtons.ShiftRight.name())) {
-
+        	 textviewer.shiftRight();
          } else if (button.getActionCommand().equals(ToolBarButtons.ShiftLeft.name())) {
 
          } else if (button.getActionCommand().equals(ToolBarButtons.Undo.name())) {
@@ -110,6 +110,7 @@ public class ToolBar extends JToolBar {
 
          } else if (button.getActionCommand().equals(ToolBarButtons.F5.name())) {
             textviewer.highliteText();
+            button.setEnabled(false);
          }
       }
    }

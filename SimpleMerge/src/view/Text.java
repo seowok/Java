@@ -135,8 +135,8 @@ public class Text extends JTextPane
 		}
 		for(int i = 0; i < linecolorlist.size(); i ++)
 		{
-			//System.out.println("(" + i + ")" + " : " + linecolorlist.get(i).getStartLine() + "," + linecolorlist.get(i).getEndLine());
-			System.out.println("(" + i + ")" + " : " + linecolorlist.get(i).getColorStart() + "," + linecolorlist.get(i).getColorEnd());
+			System.out.println("LINE" + "(" + i + ")" + " : " + linecolorlist.get(i).getStartLine() + "," + linecolorlist.get(i).getEndLine());
+			System.out.println("COLOR" + "(" + i + ")" + " : " + linecolorlist.get(i).getColorStart() + "," + linecolorlist.get(i).getColorEnd());
 		}
 		/*try {
 			hilite.addHighlight(0, 11, yellowPainter);
