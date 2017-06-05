@@ -1,7 +1,0 @@
-package controller.compare;
-
-public interface CmpParagraph {
-
-	
-	public void matchSimilarPG(JtextArea Left_contents, JtextArea Right_contents);
-}

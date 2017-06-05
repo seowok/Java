@@ -1,8 +1,0 @@
-package controller.file;
-
-import javax.swing.JTextArea;
-
-public interface SetReadOnly {
-
-	public void setReadOnlyMode(JTextArea text_area);
-}

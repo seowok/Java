@@ -1,9 +1,0 @@
-package controller.merge;
-
-import controller.compare.Paragraph;
-
-public interface MergeLine {
-
-	
-	public void moveLineTo(Paragraph compared_PG);
-}
