@@ -44,9 +44,8 @@ public class Text extends JTextPane
 			int space = 0;
 			int not_equal = 0;
 			int equal = 0;
-			int linecoloroffset_index = 0;
-			
 			ComparedLine comparedline;
+			
 			for(int i = 0; i < arraylist.size() ; i ++)
 			{
 				comparedline = (ComparedLine)arraylist.get(i);
@@ -61,20 +60,19 @@ public class Text extends JTextPane
 						linecolorlist.get(0).setStartLine(i);
 					}
 					if(equal == 1){
-						linecoloroffset_index++;
 						linecolorlist.add(new LineColorOffset(start));
-						linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.space);
-						linecolorlist.get(linecoloroffset_index).setStartLine(i);
+						linecolorlist.get(linecolorlist.size() - 1).setTag(ComparedLine.Tag.space);
+						linecolorlist.get(linecolorlist.size() - 1).setStartLine(i);
 						equal = 0;
 					}
 					if(not_equal == 1){
-						linecolorlist.get(linecoloroffset_index).setColorEnd(start);
-						linecolorlist.get(linecoloroffset_index).setEndLine(i - 1);
+						//linecolorlist.get(linecoloroffset_index).setColorEnd(start);
+						//linecolorlist.get(linecoloroffset_index).setEndLine(i - 1);
 		
-						linecoloroffset_index++;
-						linecolorlist.add(new LineColorOffset(start));
-						linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.space);
-						linecolorlist.get(linecoloroffset_index).setStartLine(i);
+						//linecoloroffset_index++;
+						//linecolorlist.add(new LineColorOffset(start));
+						//linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.space);
+						//linecolorlist.get(linecoloroffset_index).setStartLine(i);
 						not_equal = 0;
 						equal = 0;
 					}
@@ -88,25 +86,24 @@ public class Text extends JTextPane
 					
 					if(space == 0 && not_equal == 0 && equal == 0){
 						linecolorlist.add(new LineColorOffset(start));
-						linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.notequal);
+						linecolorlist.get(0).setTag(ComparedLine.Tag.notequal);
 						linecolorlist.get(0).setStartLine(i);
 					}
 					if(equal == 1)
 					{
-						linecoloroffset_index++;
 						linecolorlist.add(new LineColorOffset(start));
-						linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.notequal);
-						linecolorlist.get(linecoloroffset_index).setStartLine(i);
+						linecolorlist.get(linecolorlist.size() - 1).setTag(ComparedLine.Tag.notequal);
+						linecolorlist.get(linecolorlist.size() - 1).setStartLine(i);
 						equal = 0;
 					}
 					if(space == 1){
-						linecolorlist.get(linecoloroffset_index).setColorEnd(start);
-						linecolorlist.get(linecoloroffset_index).setEndLine(i - 1);
+						//linecolorlist.get(linecoloroffset_index).setColorEnd(start);
+						//linecolorlist.get(linecoloroffset_index).setEndLine(i - 1);
 		
-						linecoloroffset_index++;
-						linecolorlist.add(new LineColorOffset(start));
-						linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.notequal);
-						linecolorlist.get(linecoloroffset_index).setStartLine(i);
+						//linecoloroffset_index++;
+						//linecolorlist.add(new LineColorOffset(start));
+						//linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.notequal);
+						//linecolorlist.get(linecoloroffset_index).setStartLine(i);
 						equal = 0;
 						space = 0;
 					}
@@ -119,8 +116,8 @@ public class Text extends JTextPane
 				{
 					if(space == 1 || not_equal == 1)
 					{
-						linecolorlist.get(linecoloroffset_index).setColorEnd(start);
-						linecolorlist.get(linecoloroffset_index).setEndLine(i - 1);
+						linecolorlist.get(linecolorlist.size() - 1).setColorEnd(start);
+						linecolorlist.get(linecolorlist.size() - 1).setEndLine(i - 1);
 						space = 0;
 						not_equal = 0;
 					}
@@ -129,9 +126,8 @@ public class Text extends JTextPane
 				}
 				if(i == arraylist.size() - 1)
 				{
-					System.out.println("üũ");
-					linecolorlist.get(linecoloroffset_index).setColorEnd(start);
-					linecolorlist.get(linecoloroffset_index).setEndLine(i);
+					linecolorlist.get(linecolorlist.size() - 1).setColorEnd(start);
+					linecolorlist.get(linecolorlist.size() - 1).setEndLine(i);
 				}
 			}
 			System.out.println("LineColorList LENGTH : " + linecolorlist.size());
@@ -156,13 +152,13 @@ public class Text extends JTextPane
 			if(i != index){
 				if(linecolorlist.get(i).getTag().equals(ComparedLine.Tag.notequal))
 					hilite.addHighlight(linecolorlist.get(i).getColorStart() ,linecolorlist.get(i).getColorEnd(), yellowPainter);
-				if(linecolorlist.get(i).getTag().equals(ComparedLine.Tag.space))
+				else if(linecolorlist.get(i).getTag().equals(ComparedLine.Tag.space))
 					hilite.addHighlight(linecolorlist.get(i).getColorStart() ,linecolorlist.get(i).getColorEnd(), grayPainter);
-				if(linecolorlist.get(i).getTag().equals(ComparedLine.Tag.equal))
+				else if(linecolorlist.get(i).getTag().equals(ComparedLine.Tag.equal))
 					hilite.addHighlight(linecolorlist.get(i).getColorStart() ,linecolorlist.get(i).getColorEnd(), whitePainter);
 			}
 		}
-		hilite.addHighlight(linecolorlist.get(index).getColorStart() ,linecolorlist.get(index).getColorEnd(), redPainter);
+		hilite.addHighlight(linecolorlist.get(index).getColorStart(), linecolorlist.get(index).getColorEnd(), redPainter);
 		//System.out.println(linecolorlist.get(index).getColorStart() + "@" + linecolorlist.get(index).getColorEnd());
 	}
 	public ArrayList<LineColorOffset> getLineColorList()

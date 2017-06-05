@@ -4,6 +4,7 @@ import javax.swing.JToolBar;
 import javax.swing.text.BadLocationException;
 
 import controller.file.NewFile;
+import controller.file.OpenFile;
 import controller.file.StoreFile;
 import view.SMConstants.ToolBarButtons;
 

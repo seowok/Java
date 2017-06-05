@@ -43,8 +43,8 @@ public class CompareMatchEqualTest {
 		
 		/*right_list.add(new NotComparedLine("A"));
 		right_list.add(new NotComparedLine("B"));
-		right_list.add(new NotComparedLine("asdfsadf"));
-		right_list.add(new NotComparedLine("sasgeae"));
+		right_list.add(new NotComparedLine("alpha"));
+		right_list.add(new NotComparedLine("beta"));
 		right_list.add(new NotComparedLine("a"));
 		right_list.add(new NotComparedLine("z"));*/
 		

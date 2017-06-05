@@ -13,7 +13,5 @@ public class MergeLine implements MrgLine{
 			ComparedLine line = new ComparedLine(src_contents.get(i).line);
 			dest_contents.set(i, line);
 		}
-		dest_contents.get(5).line = src_contents.get(5).line;	
-		System.out.println(dest_contents.get(0).line);
 	}
 }
