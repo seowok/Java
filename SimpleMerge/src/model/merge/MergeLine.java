@@ -2,13 +2,18 @@ package model.merge;
 
 import java.util.ArrayList;
 
+import model.compare.ComparedLine;
 import model.compare.Line;
 
-public interface MergeLine {
-
-	//line which has index from start to end from Source contents to Destination contents
-	public void moveLineTo(ArrayList<Line> dest_contents, ArrayList<Line> src_contents, int start_line, int end_line);
-	
-	//copy all lines from Source contents to Destination contents
-	
+public class MergeLine implements MrgLine{
+	public void moveLineTo(ArrayList<Line> dest_contents, ArrayList<Line> src_contents, int start_line, int end_line)
+	{
+		for(int i = start_line; i <= end_line; i++)
+		{
+			ComparedLine line = new ComparedLine(src_contents.get(i).line);
+			dest_contents.set(i, line);
+		}
+		dest_contents.get(5).line = src_contents.get(5).line;	
+		System.out.println(dest_contents.get(0).line);
+	}
 }
