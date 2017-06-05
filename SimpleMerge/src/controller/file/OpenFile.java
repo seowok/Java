@@ -2,19 +2,19 @@ package controller.file;
 
 import java.awt.BorderLayout;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import controller.file.LoadData;
 import view.TextViewer;
 
-public class OpenFile extends JFrame {
+public class OpenFile extends JFrame implements LoadFile{
 
    File f =null ;
    TextViewer b;
    
-   
+   @Override
    public void LeftOpenFile(TextViewer c) {
 
       JFileChooser jc = new JFileChooser();
@@ -25,11 +25,9 @@ public class OpenFile extends JFrame {
       if (jc.showOpenDialog(this) == jc.APPROVE_OPTION) {
          try {
             f = jc.getSelectedFile();
-         
-               LoadData aaa = new LoadData();
-               aaa.loadFile(b.getLefttext(), f);
-         
             
+               loadFile(b.getLefttext(), f);
+         
          } catch (Exception e) {
 
          }
@@ -37,6 +35,7 @@ public class OpenFile extends JFrame {
       }
    }
 
+   @Override
    public void RightOpenFile(TextViewer c) {
 
       JFileChooser jc = new JFileChooser();
@@ -47,12 +46,30 @@ public class OpenFile extends JFrame {
       if (jc.showOpenDialog(this) == jc.APPROVE_OPTION) {
          try {
             f = jc.getSelectedFile();
-            LoadData aaa = new LoadData();
-            aaa.loadFile(b.getRighttext(), f);
+           loadFile(b.getRighttext(), f);
 
          } catch (Exception e) {
 
          }
       }
    }
+
+   @Override
+	public boolean loadFile(JTextPane text, File f) {
+		// TODO Auto-generated method stub
+		
+		//clear text in text area
+		text.setText("");
+		//write down text data in text area
+		try {
+		text.setPage(f.toURI().toURL());
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
 }
