@@ -23,6 +23,7 @@ public class Text extends JTextPane
 	private DefaultHighlightPainter yellowPainter = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
 	private DefaultHighlightPainter grayPainter = new DefaultHighlighter.DefaultHighlightPainter(Color.GRAY);
 	private DefaultHighlightPainter redPainter = new DefaultHighlighter.DefaultHighlightPainter(Color.RED);
+	private DefaultHighlightPainter whitePainter = new DefaultHighlighter.DefaultHighlightPainter(Color.WHITE);
 	
 	//File path needed
 	public Text()
@@ -56,11 +57,13 @@ public class Text extends JTextPane
 					//System.out.println("GRAY-CONTENTS : " + comparedline.line);
 					if(space == 0 && not_equal == 0 && equal == 0){
 						linecolorlist.add(new LineColorOffset(start));
+						linecolorlist.get(0).setTag(ComparedLine.Tag.space);
 						linecolorlist.get(0).setStartLine(i);
 					}
 					if(equal == 1){
 						linecoloroffset_index++;
 						linecolorlist.add(new LineColorOffset(start));
+						linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.space);
 						linecolorlist.get(linecoloroffset_index).setStartLine(i);
 						equal = 0;
 					}
@@ -70,6 +73,7 @@ public class Text extends JTextPane
 		
 						linecoloroffset_index++;
 						linecolorlist.add(new LineColorOffset(start));
+						linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.space);
 						linecolorlist.get(linecoloroffset_index).setStartLine(i);
 						not_equal = 0;
 						equal = 0;
@@ -84,12 +88,14 @@ public class Text extends JTextPane
 					
 					if(space == 0 && not_equal == 0 && equal == 0){
 						linecolorlist.add(new LineColorOffset(start));
+						linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.notequal);
 						linecolorlist.get(0).setStartLine(i);
 					}
 					if(equal == 1)
 					{
 						linecoloroffset_index++;
 						linecolorlist.add(new LineColorOffset(start));
+						linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.notequal);
 						linecolorlist.get(linecoloroffset_index).setStartLine(i);
 						equal = 0;
 					}
@@ -99,6 +105,7 @@ public class Text extends JTextPane
 		
 						linecoloroffset_index++;
 						linecolorlist.add(new LineColorOffset(start));
+						linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.notequal);
 						linecolorlist.get(linecoloroffset_index).setStartLine(i);
 						equal = 0;
 						space = 0;
@@ -138,20 +145,6 @@ public class Text extends JTextPane
 			System.out.println("LINE" + "(" + i + ")" + " : " + linecolorlist.get(i).getStartLine() + "," + linecolorlist.get(i).getEndLine());
 			System.out.println("COLOR" + "(" + i + ")" + " : " + linecolorlist.get(i).getColorStart() + "," + linecolorlist.get(i).getColorEnd());
 		}
-		/*try {
-			hilite.addHighlight(0, 11, yellowPainter);
-			linecolorlist.add(new LineColorOffset(0 ,0));
-			linecolorlist.get(0).setColorEnd(11);
-			linecolorlist.get(0).setEndLine(1);
-			hilite.addHighlight(12, 14, yellowPainter);
-			linecolorlist.add(new LineColorOffset(12, 2));
-			linecolorlist.get(1).setColorEnd(14);
-			linecolorlist.get(1).setEndLine(2);
-			
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		return this;
 	}
 	//툴바 버튼을 통해서 선택된 라인의 집합을 Red로 색상 전환	
@@ -161,7 +154,12 @@ public class Text extends JTextPane
 		for(int i = 0; i < linecolorlist.size(); i++)
 		{
 			if(i != index){
-				hilite.addHighlight(linecolorlist.get(i).getColorStart() ,linecolorlist.get(i).getColorEnd(), yellowPainter);
+				if(linecolorlist.get(i).getTag().equals(ComparedLine.Tag.notequal))
+					hilite.addHighlight(linecolorlist.get(i).getColorStart() ,linecolorlist.get(i).getColorEnd(), yellowPainter);
+				if(linecolorlist.get(i).getTag().equals(ComparedLine.Tag.space))
+					hilite.addHighlight(linecolorlist.get(i).getColorStart() ,linecolorlist.get(i).getColorEnd(), grayPainter);
+				if(linecolorlist.get(i).getTag().equals(ComparedLine.Tag.equal))
+					hilite.addHighlight(linecolorlist.get(i).getColorStart() ,linecolorlist.get(i).getColorEnd(), whitePainter);
 			}
 		}
 		hilite.addHighlight(linecolorlist.get(index).getColorStart() ,linecolorlist.get(index).getColorEnd(), redPainter);
@@ -171,6 +169,10 @@ public class Text extends JTextPane
 	{
 		return linecolorlist;
 	}
+	public void setLineColorOffsetArray(ArrayList<LineColorOffset> linecolorlist)
+	{
+		this.linecolorlist = linecolorlist;
+	}
 }
 //색칠된 구간의 위치를 저장
 class LineColorOffset
@@ -179,11 +181,11 @@ class LineColorOffset
 	private int color_end = 0;
 	private int start_line;
 	private int end_line;
+	ComparedLine.Tag tag;
 	
 	public LineColorOffset(int color_start)
 	{
 		this.color_start = color_start;
-		this.start_line = start_line;
 	}
 	public int getStartLine(){ return start_line; }
 	public int getEndLine(){ return end_line; }
@@ -194,6 +196,10 @@ class LineColorOffset
 	public void setEndLine(int end_line)
 	{
 		this.end_line = end_line;
+	}
+	public void setColorStart(int color_start)
+	{
+		this.color_start = color_start;
 	}
 	public void setColorEnd(int color_end)
 	{
@@ -206,5 +212,13 @@ class LineColorOffset
 	public int getColorEnd() 
 	{
 		return color_end;
+	}
+	public void setTag(ComparedLine.Tag tag)
+	{ 
+		this.tag = tag; 
+	}
+	public ComparedLine.Tag getTag()
+	{
+		return tag;
 	}
 }
