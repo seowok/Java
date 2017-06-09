@@ -22,9 +22,8 @@ public class BringFile implements ActionListener {
 		OpenFile open = new OpenFile();
 		if (e.getSource() == b.Confirm) {
 		
-  LoadData write = new LoadData();
-  write.loadFile(b.text.getLefttext(), bringleft);
-  write.loadFile(b.text.getRighttext(),bringright);
+  open.loadFile(b.text.getLefttext(), bringleft);
+  open.loadFile(b.text.getRighttext(),bringright);
   b.dispose();
   
 

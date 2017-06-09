@@ -2,14 +2,14 @@ package controller.file;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import controller.file.LoadData;
 import view.TextViewer;
 
-public class OpenFile extends JFrame {
+public class OpenFile extends JFrame implements LoadFile{
 
 	File Lfile = null;
 	File Rfile = null;
@@ -66,5 +66,24 @@ public class OpenFile extends JFrame {
 		else {
 			Rfile = null;
 		}
+	}
+	@Override
+	public boolean loadFile(JTextPane text, File f) {
+		// TODO Auto-generated method stub
+		
+		//clear text in text area
+		text.setText("");
+		//write down text data in text area
+		try {
+			String str = "";
+		text.setPage(f.toURI().toURL());
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 }

@@ -19,8 +19,10 @@ public class CompareLine implements CmpLine{
 		
 		String[] contents_str = text_pane.getText().split("\n");
 		for(String str : contents_str){
+			if(!str.equals(" ")){
 			NotComparedLine line = new NotComparedLine(str);
 			contents.add(line);
+			}
 		}
 		
 		return contents;
@@ -70,7 +72,7 @@ public class CompareLine implements CmpLine{
 		ComparedLine compared_left_line;
 		ComparedLine compared_right_line;
 		
-		ComparedLine blank_line = new ComparedLine("");
+		ComparedLine blank_line = new ComparedLine(" ");
 		blank_line.tag = Tag.space;
 		
 		int matching_line_count = 0;

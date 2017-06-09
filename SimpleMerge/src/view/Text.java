@@ -50,11 +50,8 @@ public class Text extends JTextPane
 			for(int i = 0; i < arraylist.size() ; i ++)
 			{
 				comparedline = (ComparedLine)arraylist.get(i);
-				System.out.println("<" + comparedline.tag + ">" + comparedline.line);
 				if(comparedline.tag.equals(ComparedLine.Tag.space))
 				{
-					//System.out.println(comparedline.line.length());
-					//System.out.println("GRAY-CONTENTS : " + comparedline.line);
 					if(space == 0 && not_equal == 0 && equal == 0){
 						linecolorlist.add(new LineColorOffset(start));
 						linecolorlist.get(0).setTag(ComparedLine.Tag.space);
@@ -67,24 +64,15 @@ public class Text extends JTextPane
 						equal = 0;
 					}
 					if(not_equal == 1){
-						//linecolorlist.get(linecoloroffset_index).setColorEnd(start);
-						//linecolorlist.get(linecoloroffset_index).setEndLine(i - 1);
-		
-						//linecoloroffset_index++;
-						//linecolorlist.add(new LineColorOffset(start));
-						//linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.space);
-						//linecolorlist.get(linecoloroffset_index).setStartLine(i);
 						not_equal = 0;
 						equal = 0;
 					}
-					hilite.addHighlight(start, start + 1, grayPainter);
+					hilite.addHighlight(start, start + 2, grayPainter);
 					space = 1;
-					start += 1;
+					start += 2;
 				}
 				else if(comparedline.tag.equals(ComparedLine.Tag.notequal))
-				{
-					//System.out.println("YELLOW" + start + "~" + (start + comparedline.line.length()));
-					
+				{					
 					if(space == 0 && not_equal == 0 && equal == 0){
 						linecolorlist.add(new LineColorOffset(start));
 						linecolorlist.get(0).setTag(ComparedLine.Tag.notequal);
@@ -98,13 +86,6 @@ public class Text extends JTextPane
 						equal = 0;
 					}
 					if(space == 1){
-						//linecolorlist.get(linecoloroffset_index).setColorEnd(start);
-						//linecolorlist.get(linecoloroffset_index).setEndLine(i - 1);
-		
-						//linecoloroffset_index++;
-						//linecolorlist.add(new LineColorOffset(start));
-						//linecolorlist.get(linecoloroffset_index).setTag(ComparedLine.Tag.notequal);
-						//linecolorlist.get(linecoloroffset_index).setStartLine(i);
 						equal = 0;
 						space = 0;
 					}
@@ -131,15 +112,9 @@ public class Text extends JTextPane
 					linecolorlist.get(linecolorlist.size() - 1).setEndLine(i);
 				}
 			}
-			System.out.println("LineColorList LENGTH : " + linecolorlist.size());
 		}
 		catch (BadLocationException e) {
 			e.printStackTrace();
-		}
-		for(int i = 0; i < linecolorlist.size(); i ++)
-		{
-			System.out.println("LINE" + "(" + i + ")" + " : " + linecolorlist.get(i).getStartLine() + "," + linecolorlist.get(i).getEndLine());
-			System.out.println("COLOR" + "(" + i + ")" + " : " + linecolorlist.get(i).getColorStart() + "," + linecolorlist.get(i).getColorEnd());
 		}
 		return this;
 	}

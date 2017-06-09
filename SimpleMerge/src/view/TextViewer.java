@@ -135,7 +135,7 @@ public class TextViewer extends JPanel {
 	}
 	void shiftRight() throws BadLocationException
 	{
-		tvmcontroller.shiftRight(linesetcolorindex, left_contents, left_linecolorlist, right_linecolorlist, compared_left_lines, compared_right_lines);
+		tvmcontroller.shiftRight(linesetcolorindex, right_contents, left_linecolorlist, right_linecolorlist, compared_left_lines, compared_right_lines);
 		shift_flag = 1;
 	}
 	void shiftLeft() throws BadLocationException
