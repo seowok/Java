@@ -29,8 +29,10 @@ public class CompareLine implements CmpLine{
 	}
 
 	@Override
-	public void matchEqualLine(ArrayList<Line> notCompared_left, ArrayList<Line> notCompared_right) {
+	public int matchEqualLine(ArrayList<Line> notCompared_left, ArrayList<Line> notCompared_right) {
 		// TODO Auto-generated method stub
+		
+		int equal_count = 0;
 		
 		NotComparedLine start_line = new NotComparedLine("");
 		notCompared_left.add(0, start_line);
@@ -121,6 +123,7 @@ public class CompareLine implements CmpLine{
 					compared_left_line = new ComparedLine(notCompared_left.get(j).line);
 					compared_left_line.tag = Tag.equal;
 					compared_left.add(compared_left_line);
+					equal_count++;
 					left_print_count++;
 					
 					compared_right_line = new ComparedLine(notCompared_right.get(i).line);
@@ -163,6 +166,11 @@ public class CompareLine implements CmpLine{
 				compared_left.add(blank_line);
 			}
 		}
+		
+		notCompared_left.remove(0);
+		notCompared_right.remove(0);
+		
+		return equal_count;
 	}
 	
 	public ArrayList<Line> getComparedLeft(){
@@ -176,5 +184,5 @@ public class CompareLine implements CmpLine{
 	public ArrayList<Line> getComparedRight(){
 		return compared_right;
 	}
-
+	
 }

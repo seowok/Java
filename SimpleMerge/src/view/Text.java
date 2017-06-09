@@ -106,7 +106,7 @@ public class Text extends JTextPane
 					equal = 1;
 					start += comparedline.line.length() + 1;
 				}
-				if(i == arraylist.size() - 1)
+				if((space == 1 || not_equal == 1) && i == arraylist.size() - 1 && linecolorlist.size() != 0)
 				{
 					linecolorlist.get(linecolorlist.size() - 1).setColorEnd(start);
 					linecolorlist.get(linecolorlist.size() - 1).setEndLine(i);
@@ -133,6 +133,7 @@ public class Text extends JTextPane
 					hilite.addHighlight(linecolorlist.get(i).getColorStart() ,linecolorlist.get(i).getColorEnd(), whitePainter);
 			}
 		}
+		if(linecolorlist.size() > 0)
 		hilite.addHighlight(linecolorlist.get(index).getColorStart(), linecolorlist.get(index).getColorEnd(), redPainter);
 		//System.out.println(linecolorlist.get(index).getColorStart() + "@" + linecolorlist.get(index).getColorEnd());
 	}

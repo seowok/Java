@@ -11,15 +11,18 @@ public class BringFile implements ActionListener {
 	File bringleft;
 	File bringright;
 	BringFileView b;
+	LoadFile open = new OpenFile();
 	
 	public BringFile(BringFileView b){
 		this.b = b;
 	}
 	
+	public void setOpenFile(LoadFile load_file){
+		open = load_file;
+	}
 	
 	
 	public void actionPerformed(ActionEvent e) {
-		OpenFile open = new OpenFile();
 		if (e.getSource() == b.Confirm) {
 		
   open.loadFile(b.text.getLefttext(), bringleft);

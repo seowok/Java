@@ -1,7 +1,9 @@
 package controller.file;
 
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 import javax.swing.*;
@@ -14,6 +16,9 @@ public class OpenFile extends JFrame implements LoadFile{
 	File Lfile = null;
 	File Rfile = null;
 	TextViewer t;
+	
+	FileReader fr;
+	BufferedReader br = null;
 
 	// 파일경로를 openfile에서 먼저 받아온 다음에 확인을 누르면 lefttext에 쓰는 함수
 	
@@ -24,8 +29,6 @@ public class OpenFile extends JFrame implements LoadFile{
 	public File getRfile(){
 		return Rfile;
 	}
-	
-	
 	
 	public void GetLeftFilePath() {
 
@@ -48,7 +51,7 @@ public class OpenFile extends JFrame implements LoadFile{
 		}
 
 	}
-
+	
 	public void GetRightFilePath() {
 
 		JFileChooser jc = new JFileChooser();
@@ -69,6 +72,8 @@ public class OpenFile extends JFrame implements LoadFile{
 	}
 	@Override
 	public boolean loadFile(JTextPane text, File f) {
+		
+		String line;
 		// TODO Auto-generated method stub
 		
 		//clear text in text area
@@ -76,7 +81,13 @@ public class OpenFile extends JFrame implements LoadFile{
 		//write down text data in text area
 		try {
 			String str = "";
-		text.setPage(f.toURI().toURL());
+			fr = new FileReader(f);
+			br = new BufferedReader(fr);
+			while((line = br.readLine()) != null){
+				str += line + "\n";
+			}
+
+			text.setText(str);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

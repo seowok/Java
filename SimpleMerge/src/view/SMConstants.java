@@ -19,7 +19,7 @@ public class SMConstants {
 	public static final String TITLE_VIEWMENU = "º¸±â(V)";
 	public static final String TITLE_WINDOWMENU = "Ã¢(W)";
 	//Menu
-	public static enum FileMenuItems {Menu1, Menu2, Menu3, Menu4};
+	public static enum FileMenuItems {NewFile, LoadFile, SaveFile};
 	public static enum EditMenuItems {Undo, Restart, Cut, Copy, Paste, LineDiffChoice, AllChoice, Find, Change, Script, Details, BookMark, Move, Settings};
 	public static enum HelpMenuItems {Instruction, ReleaseNote, Translation, Settings,CompressFile,GNELisence,WinmergeINFO}
 	public static enum PluginsMenuItems {List,UnAutoUnpack, AutoUnpack, UnpackerUseEdit,Prediffer,PluginReload};

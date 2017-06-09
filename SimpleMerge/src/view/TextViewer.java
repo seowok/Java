@@ -50,7 +50,7 @@ public class TextViewer extends JPanel {
 		
 		setLayout(new GridLayout(1, 2, 10, 10));
 		lefttext = new Text();
-		lefttext.setText("Apple\nOnion\nsad\nzxcv\nasdas\nA\nzxc\n"
+		lefttext.setText("Apple\nOnion\nsad\n\n\nzxcv\nasdas\nA\nzxc\n"
 				+ "asdas\nA\nzxc\nasdsad\nzxczxc\nasdas\nz\na\nb\nzxc\n");
 		lefttext_scroll = new JScrollPane(lefttext);
 		add(lefttext_scroll);
@@ -71,15 +71,26 @@ public class TextViewer extends JPanel {
 	}
 	void highliteText() 
 	{
+		int left_base_count = 0;
+		int right_base_count = 0;
+		
+		linesetcolorindex = -1;
 		String contents;
 		contents = "";
 
 		compareline = new CompareLine();
+		CompareLine left_compareline = new CompareLine();
+		CompareLine right_compareline = new CompareLine();
 		
 		left_notcomparedlines = compareline.constructLine(lefttext);
 		right_notcomparedlines = compareline.constructLine(righttext);
-		compareline.matchEqualLine(left_notcomparedlines, right_notcomparedlines);
-
+		
+		left_base_count = left_compareline.matchEqualLine(left_notcomparedlines, right_notcomparedlines);
+		right_base_count = right_compareline.matchEqualLine(right_notcomparedlines, left_notcomparedlines);
+		
+		if(left_base_count >= right_base_count) compareline = left_compareline;
+		else compareline = right_compareline;
+		
 		compared_left_lines = compareline.getComparedLeft();
 		compared_right_lines = compareline.getComparedRight();
 
@@ -135,13 +146,17 @@ public class TextViewer extends JPanel {
 	}
 	void shiftRight() throws BadLocationException
 	{
+		if(linesetcolorindex < left_linecolorlist.size() && linesetcolorindex >= 0){
 		tvmcontroller.shiftRight(linesetcolorindex, left_contents, left_linecolorlist, right_linecolorlist, compared_left_lines, compared_right_lines);
 		shift_flag = 1;
+		}
 	}
 	void shiftLeft() throws BadLocationException
 	{
+		if(linesetcolorindex < left_linecolorlist.size() && linesetcolorindex >= 0){
 		tvmcontroller.shiftLeft(linesetcolorindex, left_contents, left_linecolorlist, right_linecolorlist, compared_left_lines, compared_right_lines);
 		shift_flag = 1;
+		}
 	}
 	void shiftAllRight() throws BadLocationException
 	{

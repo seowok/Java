@@ -112,8 +112,6 @@ public class ToolBar extends JToolBar {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				jbtn_arraylist.get(7).setEnabled(true);// ShiftRight Activation
-				jbtn_arraylist.get(8).setEnabled(true);// ShiftLeft Activation
 			} else if (button.getActionCommand().equals(ToolBarButtons.FirstDiff.name())) {
 				try {
 					textviewer.firstDiff();
@@ -121,8 +119,10 @@ public class ToolBar extends JToolBar {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				jbtn_arraylist.get(7).setEnabled(true);
+				jbtn_arraylist.get(8).setEnabled(true);
 			}
-
+			
 			else if (button.getActionCommand().equals(ToolBarButtons.LastDiff.name())) {
 				try {
 					textviewer.lastDiff();
@@ -130,6 +130,8 @@ public class ToolBar extends JToolBar {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				jbtn_arraylist.get(7).setEnabled(true);// ShiftRight Activation
+				jbtn_arraylist.get(8).setEnabled(true);// ShiftLeft Activation
 			}
 			else if (button.getActionCommand().equals(ToolBarButtons.AllShiftRight.name())) {
 				try {

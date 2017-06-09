@@ -23,13 +23,13 @@ public class MenuFile extends JMenu{
 	private class FileMenuHandler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			switch(FileMenuItems.valueOf(e.getActionCommand())){
-				case Menu1 :
+				case NewFile :
 					break;
-				case Menu2 :
+				case LoadFile :
 					break;
-				case Menu3 :
+				case SaveFile :
 					break;
-				case Menu4 :
+				default :
 					break;
 			}
 			
