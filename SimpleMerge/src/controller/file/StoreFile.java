@@ -66,11 +66,12 @@ public class StoreFile extends JFrame implements SaveFile{
 	      // TODO Auto-generated method stub
 
 	      try {
+	         String[] str_s = text.getText().trim().split("\n", -1);
 	         
-	         String str = text.getText().trim();
-	         if(str.length()<1)
-	            return false;
-	      fw.write(str);
+	         for(String str : str_s){
+	        	 fw.write(str + "\r\n");
+	         }
+
 	      fw.close();
 	         
 	      } catch (IOException e) {
