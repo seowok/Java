@@ -113,7 +113,7 @@ public class TextViewer extends JPanel {
 		shift_flag = 0;
 	}
 
-	void prevDiff() throws BadLocationException 
+	void prevDiff() throws BadLocationException
 	{
 		linesetcolorindex--;
 		tvscontroller.prevDiff(linesetcolorindex, left_linecolorlist.size(), left_contents, right_contents);
@@ -135,13 +135,25 @@ public class TextViewer extends JPanel {
 	}
 	void shiftRight() throws BadLocationException
 	{
-		tvmcontroller.shiftRight(linesetcolorindex, right_contents, left_linecolorlist, right_linecolorlist, compared_left_lines, compared_right_lines);
+		tvmcontroller.shiftRight(linesetcolorindex, left_contents, left_linecolorlist, right_linecolorlist, compared_left_lines, compared_right_lines);
 		shift_flag = 1;
 	}
 	void shiftLeft() throws BadLocationException
 	{
-		tvmcontroller.shiftRight(linesetcolorindex, left_contents, left_linecolorlist, right_linecolorlist, compared_left_lines, compared_right_lines);
+		tvmcontroller.shiftLeft(linesetcolorindex, left_contents, left_linecolorlist, right_linecolorlist, compared_left_lines, compared_right_lines);
 		shift_flag = 1;
+	}
+	void shiftAllRight() throws BadLocationException
+	{
+		tvmcontroller.shiftAllRight(left_contents);
+		lefttext.setText(left_contents);
+		righttext.setText(left_contents);
+	}
+	void shiftAllLeht() throws BadLocationException
+	{
+		tvmcontroller.shiftAllLeft(right_contents);
+		lefttext.setText(right_contents);
+		righttext.setText(right_contents);
 	}
 	public void setlinesetcolorindex(int linesetcolorindex){
 		this.linesetcolorindex = linesetcolorindex;

@@ -2,12 +2,12 @@ package view;
 
 public class SMConstants {
 	//MainFrame
-	public static final int WIDTH_MAINFRAME = 1000;
-	public static final int HEIGHT_MAINFRAME = 800;
+	public static final int WIDTH_MAINFRAME = 1500;
+	public static final int HEIGHT_MAINFRAME = 1200;
 	public static final String TITLE_MAINFRAME = "SimpleMerge";
 	//ToolBar
-	public static enum ToolBarButtons {NewFile, LoadFile, SaveFile, Undo, Redo, FindDiffInLine, NextDiff, PrevDiff, FirstDiff,
-	NowDiff, LastDiff, ShiftRight, ShiftLeft, ShiftRightPro, ShiftLeftPro, Settings, AllShiftRight, AllShiftLeft, F5};
+	public static enum ToolBarButtons {NewFile, LoadFile, SaveFile, NextDiff, PrevDiff, FirstDiff,
+	 LastDiff, ShiftRight, ShiftLeft, AllShiftRight, AllShiftLeft, F5};
 	public static final String IMG_URL = "images/";
 	public static final String TOOLBAR_BTN = ".gif";
 	//MenuBar

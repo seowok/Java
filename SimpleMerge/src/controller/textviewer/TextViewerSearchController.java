@@ -16,7 +16,8 @@ public class TextViewerSearchController {
       this.righttext = righttext;
       this.textviewer = tv;
    }
-   public void nextDiff(int linesetcolorindex, int size, String left_contents, String right_contents) throws BadLocationException
+   public void nextDiff(int linesetcolorindex, int size, String left_contents, String right_contents) throws BadLocationException,
+   ArrayIndexOutOfBoundsException
    {
       lefttext.setText(left_contents);
       righttext.setText(right_contents);
@@ -32,7 +33,8 @@ public class TextViewerSearchController {
          righttext.selectLineSet(linesetcolorindex);
       }
    }
-   public void prevDiff(int linesetcolorindex, int size, String left_contents, String right_contents) throws BadLocationException
+   public void prevDiff(int linesetcolorindex, int size, String left_contents, String right_contents) throws BadLocationException,
+   ArrayIndexOutOfBoundsException
    {
       lefttext.setText(left_contents);
       righttext.setText(right_contents);
@@ -55,6 +57,7 @@ public class TextViewerSearchController {
    {
       lefttext.setText(left_contents);
       righttext.setText(right_contents);
+      textviewer.setlinesetcolorindex(0);
       lefttext.selectLineSet(0);
       righttext.selectLineSet(0);
    }
@@ -62,6 +65,7 @@ public class TextViewerSearchController {
    {
       lefttext.setText(left_contents);
       righttext.setText(right_contents);
+      textviewer.setlinesetcolorindex(size - 1);
       lefttext.selectLineSet(size - 1);
       righttext.selectLineSet(size - 1);
    }
